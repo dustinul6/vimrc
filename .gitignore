@@ -1,0 +1,5 @@
+# Blacklist everything
+*
+# Whitelist the file you're interested in. 
+!.vimrc 
+!.gitignore
