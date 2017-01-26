@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 # Blacklist everything
 *
 # Whitelist the file you're interested in. 
 !.vimrc 
 !.gitignore
+=======
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!.vimrc
+# etc...
+
+# ...even if they are in subdirectories
+>>>>>>> db9fc1e81eb351b3030a72b91a3fc004c047238f
