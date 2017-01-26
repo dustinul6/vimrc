@@ -48,6 +48,7 @@ Plug 'benekastah/neomake'
 Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'valloric/youcompleteme'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 " }}}
 
