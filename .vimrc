@@ -51,7 +51,7 @@ Plug 'valloric/youcompleteme'
 call plug#end()
 " }}}
 
-colorscheme wombat
+colorscheme wombat256mod " 256mod work with terminal
 syntax enable           " enable syntax processing
 "set tabstop=4       " number of visual spaces per TAB
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -335,3 +335,16 @@ set foldmethod=marker   " fold based on indent level
 "}}}
 
 ">>>>>>> db9fc1e81eb351b3030a72b91a3fc004c047238f
+
+
+if &term == 'xterm-256color' || &term == 'screen-256color'
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+    
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+endif
