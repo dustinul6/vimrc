@@ -20,6 +20,7 @@ Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'valloric/youcompleteme'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 " }}}
 
@@ -30,6 +31,7 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 "set softtabstop=0   " number of spaces in tab when editing
 "set expandtab       " tabs are spaces
 set number              " show line numbers
+set tw=79               "auto wrap words"
 set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
 filetype indent on      " load filetype-specific indent files
@@ -145,3 +147,7 @@ if exists('$TMUX')
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 endif
 
+
+" add new line without entering insert mode
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>

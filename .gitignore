@@ -6,5 +6,5 @@
 !.juliarc.jl
 !.tmux.conf
 !.bashrc
-
+!.zshrc
 # ...even if they are in subdirectories
