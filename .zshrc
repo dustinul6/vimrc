@@ -89,3 +89,4 @@ source ~/.bin/tmuxinator.zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias jlaws='ssh -i "~/Dropbox/stability/Code/JuliaTest.pem" ec2-user@ec2-52-205-253-195.compute-1.amazonaws.com'
