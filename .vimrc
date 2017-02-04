@@ -61,7 +61,7 @@ inoremap jk <esc>
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
 
-" More natural moving around 
+" More natural moving around
 "nnoremap <C-J> <C-W><C-J>
 "nnoremap <C-K> <C-W><C-K>
 "nnoremap <C-L> <C-W><C-L>
@@ -82,12 +82,12 @@ endif
 " }}}
 
 " CtrlP settings {{{
-set number 
+set number
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 'r'
 "make CtrlP default mixed search
-nnoremap <C-P> :CtrlPMixed<CR> 
+nnoremap <C-P> :CtrlPMixed<CR>
 " }}}
 
 " Airline {{{
@@ -140,7 +140,7 @@ if &term == 'xterm-256color' || &term == 'screen-256color'
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-    
+
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
@@ -151,3 +151,6 @@ endif
 " add new line without entering insert mode
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+" source: http://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
