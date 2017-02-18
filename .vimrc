@@ -25,6 +25,8 @@ Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'valloric/youcompleteme'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'baruchel/vim-notebook'
+Plug 'tpope/vim-markdown'
 call plug#end()
 " }}}
 
@@ -106,7 +108,7 @@ set encoding=utf-8
 
 " }}}
 
-"" Window size {{{
+" Window size {{{
 set number
 if has("gui_running")
   " GUI is running or is about to start.
@@ -123,7 +125,7 @@ else
 endif
 " }}}
 
-"" Fold {{{
+" Fold {{{
 set number
 set modelines=1
 set foldenable          " enable folding
@@ -132,12 +134,12 @@ set foldnestmax=10      " 10 nested fold max
 " space open/closes folds
 nnoremap <space> za
 set foldmethod=marker   " fold based on indent level
-" vim:foldmethod=marker:foldlevel=0
+set foldlevel=0
 
 "}}}
 
-
-
+" Cursor shape {{{
+set number
 if &term == 'xterm-256color' || &term == 'screen-256color'
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -160,3 +162,20 @@ if has("autocmd")
                 \ endif
     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif 
+"}}}
+
+" Notebook Setting (Julia) {{{
+set number
+nnoremap <leader>jj ::NotebookEvaluate<CR>
+let g:notebook_cmd='~/julia/bin/julia'
+let g:notebook_stop='exit()'
+let g:notebook_send0=""
+let g:notebook_send='println(); println(\"VIMJULIANOTEBOOK\")'
+let g:notebook_detect='VIMJULIANOTEBOOK'
+"}}}
+
+" syntax highlighting for Markdown files
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'julia']
+
+""" The following line MUST be at the last line for the folding to work.
+" vim:foldmethod=marker:foldlevel=0
