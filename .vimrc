@@ -70,7 +70,7 @@ inoremap jk <esc>
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
 
-" More natural moving around 
+" More natural moving around
 "nnoremap <C-J> <C-W><C-J>
 "nnoremap <C-K> <C-W><C-K>
 "nnoremap <C-L> <C-W><C-L>
@@ -91,12 +91,12 @@ endif
 " }}}
 
 " CtrlP settings {{{
-set number 
+set number
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 'r'
 "make CtrlP default mixed search
-nnoremap <C-P> :CtrlPMixed<CR> 
+nnoremap <C-P> :CtrlPMixed<CR>
 " }}}
 
 " Airline {{{
@@ -149,7 +149,7 @@ if &term == 'xterm-256color' || &term == 'screen-256color'
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-    
+
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
@@ -159,13 +159,13 @@ endif
 if has("autocmd")
     au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
     au InsertEnter,InsertChange *
-                \ if v:insertmode == 'i' | 
+                \ if v:insertmode == 'i' |
                 \   silent execute '!echo -ne "\e[6 q"' | redraw! |
                 \ elseif v:insertmode == 'r' |
                 \   silent execute '!echo -ne "\e[4 q"' | redraw! |
                 \ endif
     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif 
+endif
 "}}}
 
 " Notebook Setting (Julia) {{{
