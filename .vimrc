@@ -27,6 +27,10 @@ Plug 'valloric/youcompleteme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'baruchel/vim-notebook'
 Plug 'tpope/vim-markdown'
+Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 call plug#end()
 " }}}
 
@@ -177,5 +181,18 @@ let g:notebook_detect='VIMJULIANOTEBOOK'
 " syntax highlighting for Markdown files
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'julia']
 
+"" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+"" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<C-Y>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+
+let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 """ The following line MUST be at the last line for the folding to work.
+
 " vim:foldmethod=marker:foldlevel=0

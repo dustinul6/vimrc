@@ -86,3 +86,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias julia='~/julia/bin/julia' 
 alias src='source ~/.zshrc'
+alias vim='vim --servername vim'
+alias saget='sudo apt-get'
