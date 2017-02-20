@@ -21,6 +21,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'valloric/youcompleteme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-unimpaired'
+Plug 'lervag/vimtex'
 call plug#end()
 " }}}
 

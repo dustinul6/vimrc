@@ -1,1 +1,1 @@
-push!(LOAD_PATH, "Users/dustinul6/Dropbox/stability/Code")
+push!(LOAD_PATH, "~/Dropbox/stability/Code/CLA/src")
