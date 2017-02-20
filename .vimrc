@@ -197,4 +197,9 @@ let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 autocmd BufNewFile,BufRead *.tex NERDTree
 """ The following line MUST be at the last line for the folding to work.
 
+"" Faster saving and add to git
+nnoremap ww :w<CR>
+nnoremap gw :Gw<CR>
+nnoremap gc :Gcommit<CR>
+nnoremap gp :Gpush<CR>
 " vim:foldmethod=marker:foldlevel=0
