@@ -199,7 +199,11 @@ autocmd BufNewFile,BufRead *.tex NERDTree
 
 "" Faster saving and add to git
 nnoremap ww :w<CR>
+nnoremap wq :wq<CR>
 nnoremap gw :Gw<CR>
 nnoremap gc :Gcommit<CR>
 nnoremap gp :Gpush<CR>
+
+"" Removing Trailing white spaces
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " vim:foldmethod=marker:foldlevel=0
