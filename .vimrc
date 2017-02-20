@@ -193,6 +193,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
+
+autocmd BufNewFile,BufRead *.tex NERDTree
 """ The following line MUST be at the last line for the folding to work.
 
 " vim:foldmethod=marker:foldlevel=0
