@@ -1,5 +1,10 @@
 " Vim Plug {{{
 set number
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
@@ -20,8 +25,12 @@ Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'valloric/youcompleteme'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-unimpaired'
+Plug 'baruchel/vim-notebook'
+Plug 'tpope/vim-markdown'
 Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 call plug#end()
 " }}}
 
@@ -32,7 +41,6 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 "set softtabstop=0   " number of spaces in tab when editing
 "set expandtab       " tabs are spaces
 set number              " show line numbers
-set tw=79               "auto wrap words"
 set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
 filetype indent on      " load filetype-specific indent files
@@ -104,7 +112,7 @@ set encoding=utf-8
 
 " }}}
 
-"" Window size {{{
+" Window size {{{
 set number
 if has("gui_running")
   " GUI is running or is about to start.
@@ -121,7 +129,7 @@ else
 endif
 " }}}
 
-"" Fold {{{
+" Fold {{{
 set number
 set modelines=1
 set foldenable          " enable folding
@@ -130,12 +138,12 @@ set foldnestmax=10      " 10 nested fold max
 " space open/closes folds
 nnoremap <space> za
 set foldmethod=marker   " fold based on indent level
-" vim:foldmethod=marker:foldlevel=0
+set foldlevel=0
 
 "}}}
 
-
-
+" Cursor shape {{{
+set number
 if &term == 'xterm-256color' || &term == 'screen-256color'
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -148,10 +156,54 @@ if exists('$TMUX')
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 endif
 
+if has("autocmd")
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+                \ if v:insertmode == 'i' |
+                \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+                \ elseif v:insertmode == 'r' |
+                \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+                \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+"}}}
 
-" add new line without entering insert mode
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
-"Remove all trailing whitespace by pressing F5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-" source: http://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+" Notebook Setting (Julia) {{{
+set number
+nnoremap <leader>jj ::NotebookEvaluate<CR>
+let g:notebook_cmd='~/julia/bin/julia'
+let g:notebook_stop='exit()'
+let g:notebook_send0=""
+let g:notebook_send='println(); println(\"VIMJULIANOTEBOOK\")'
+let g:notebook_detect='VIMJULIANOTEBOOK'
+"}}}
+
+" syntax highlighting for Markdown files
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'julia']
+
+"" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+"" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<C-Y>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+
+let g:UltiSnipsEditSplit = "horizontal"
+let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
+
+autocmd BufNewFile,BufRead *.tex NERDTree
+""" The following line MUST be at the last line for the folding to work.
+
+"" Faster saving and add to git
+nnoremap ww :w<CR>
+nnoremap wq :wq<CR>
+nnoremap gw :Gw<CR>
+nnoremap gc :Gcommit<CR>
+nnoremap gp :Gpush<CR>
+
+"" Removing Trailing white spaces
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+" vim:foldmethod=marker:foldlevel=0
