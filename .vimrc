@@ -194,7 +194,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 
-autocmd BufNewFile,BufRead *.tex NERDTree
+autocmd FileType tex NERDTree | syntax enable
 """ The following line MUST be at the last line for the folding to work.
 
 "" Faster saving and add to git
@@ -206,4 +206,8 @@ nnoremap gp :Gpush<CR>
 
 "" Removing Trailing white spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
+au FileType tex let b:delimitMate_matchpairs = "<:>"
 " vim:foldmethod=marker:foldlevel=0
