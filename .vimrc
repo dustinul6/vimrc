@@ -52,6 +52,7 @@ set hlsearch            " highlight matches
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set backspace=indent,eol,start "making backspace work normally, not default behavior
+set linebreak
 
 runtime macros/matchit.vim
 " turn off search highlight
@@ -59,6 +60,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+nnoremap gj <Down>
+nnoremap gk <Up>
 " highlight last inserted text
 nnoremap gV `[v`]
 " Leader
@@ -194,7 +197,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 
-autocmd FileType tex NERDTree | syntax enable
+autocmd FileType tex NERDTree | syntax enable |  
+
 """ The following line MUST be at the last line for the folding to work.
 
 "" Faster saving and add to git
@@ -207,7 +211,27 @@ nnoremap gp :Gpush<CR>
 "" Removing Trailing white spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-let delimitMate_expand_space = 1
+let delimitMate_expand_space=1
 let delimitMate_expand_cr = 1
-au FileType tex let b:delimitMate_matchpairs = "<:>"
+let delimitMate_expand_inside_quotes = 1
+let b:delimitMate_quotes = "$" " '
+imap <C-L> <Plug>delimitMateS-Tab
 " vim:foldmethod=marker:foldlevel=0
+
+" vimtex + YCM {{{
+set number 
+if !exists('g:ycm_semantic_triggers')
+let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+    \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+    \ 're!\\hyperref\[[^]]*',
+    \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\(include(only)?|input){[^}]*',
+    \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+    \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ ]
+"}}}
+"inoremap gj <Esc>f$a<Space>
