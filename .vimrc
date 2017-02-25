@@ -206,4 +206,6 @@ nnoremap gp :Gpush<CR>
 
 "" Removing Trailing white spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+let g:vimtex_indent_enabled=0
 " vim:foldmethod=marker:foldlevel=0

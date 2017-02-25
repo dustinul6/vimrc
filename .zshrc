@@ -93,3 +93,5 @@ alias jlaws='ssh -i "~/Dropbox/stability/Code/JuliaTest.pem" ec2-user@ec2-52-205
 alias julia='~/Julia/julia/julia'
 alias states='cd ~/Dropbox/stability/Code'
 alias zsrc='source ~/.zshrc'
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
