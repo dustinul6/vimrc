@@ -194,7 +194,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 
-autocmd BufNewFile,BufRead *.tex NERDTree
+autocmd BufNewFile,BufRead *.tex :VimtexTocOpen
 """ The following line MUST be at the last line for the folding to work.
 
 "" Faster saving and add to git
