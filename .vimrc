@@ -31,13 +31,16 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 " }}}
 
-colorscheme wombat256mod " 256mod work with terminal
+set background=light
+colorscheme PaperColor
+"wombat256mod " 256mod work with terminal
 syntax enable           " enable syntax processing
 "set tabstop=4       " number of visual spaces per TAB
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 "set softtabstop=0   " number of spaces in tab when editing
 "set expandtab       " tabs are spaces
 set number              " show line numbers
@@ -45,13 +48,14 @@ set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
 filetype indent on      " load filetype-specific indent files
 set wildmenu            " visual autocomplete for command menu
-"set lazyredraw          " redraw only when we need to.
+set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set backspace=indent,eol,start "making backspace work normally, not default behavior
+set linebreak
 
 runtime macros/matchit.vim
 " turn off search highlight
@@ -59,6 +63,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+nnoremap gj <Down>
+nnoremap gk <Up>
 " highlight last inserted text
 nnoremap gV `[v`]
 " Leader
@@ -105,7 +111,7 @@ let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set ttimeoutlen=50
 let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
+let g:airline_theme='papercolor'
 " unicode symbols
 
 set encoding=utf-8
@@ -207,5 +213,28 @@ nnoremap gp :Gpush<CR>
 "" Removing Trailing white spaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-let g:vimtex_indent_enabled=0
+let delimitMate_expand_space=1
+let delimitMate_expand_cr = 1
+let delimitMate_expand_inside_quotes = 1
+let b:delimitMate_quotes = "$" "\" ' `" 
+imap <C-L> <Plug>delimitMateS-Tab
 " vim:foldmethod=marker:foldlevel=0
+set omnifunc=syntaxcomplete#Complete
+
+" vimtex + YCM {{{
+set number 
+if !exists('g:ycm_semantic_triggers')
+let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+    \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+    \ 're!\\hyperref\[[^]]*',
+    \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+    \ 're!\\(include(only)?|input){[^}]*',
+    \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+    \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+    \ ]
+"}}}
+"inoremap gj <Esc>f$a<Space>
