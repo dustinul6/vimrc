@@ -216,13 +216,13 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 let delimitMate_expand_space=1
 let delimitMate_expand_cr = 1
 let delimitMate_expand_inside_quotes = 1
-let b:delimitMate_quotes = "$" "\" ' `" 
+let b:delimitMate_quotes = "$" "\" ' `"
 imap <C-L> <Plug>delimitMateS-Tab
 " vim:foldmethod=marker:foldlevel=0
 set omnifunc=syntaxcomplete#Complete
 
 " vimtex + YCM {{{
-set number 
+set number
 if !exists('g:ycm_semantic_triggers')
 let g:ycm_semantic_triggers = {}
 endif
