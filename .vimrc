@@ -23,7 +23,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'benekastah/neomake'
 Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'valloric/youcompleteme'
+"Plug 'valloric/youcompleteme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'baruchel/vim-notebook'
 Plug 'tpope/vim-markdown'
@@ -31,10 +31,14 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 " }}}
 
-colorscheme wombat256mod " 256mod work with terminal
+let g:neocomplete#enable_at_startup = 1
+"colorscheme wombat256mod " 256mod work with terminal
+set background=light
+colorscheme PaperColor
 syntax enable           " enable syntax processing
 "set tabstop=4       " number of visual spaces per TAB
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -108,7 +112,8 @@ let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set ttimeoutlen=50
 let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
+"let g:airline_theme='badwolf'
+let g:airline_theme='papercolor'
 " unicode symbols
 
 set encoding=utf-8
@@ -197,7 +202,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 
-autocmd FileType tex NERDTree | syntax enable |  
+autocmd FileType tex NERDTree | syntax enable |
 
 """ The following line MUST be at the last line for the folding to work.
 
@@ -214,12 +219,12 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 let delimitMate_expand_space=1
 let delimitMate_expand_cr = 1
 let delimitMate_expand_inside_quotes = 1
-let b:delimitMate_quotes = "$" "\" ' `" 
+let b:delimitMate_quotes = "$" "\" ' `"
 imap <C-L> <Plug>delimitMateS-Tab
 " vim:foldmethod=marker:foldlevel=0
 
 " vimtex + YCM {{{
-"set number 
+"set number
 "if !exists('g:ycm_semantic_triggers')
 "let g:ycm_semantic_triggers = {}
 "endif
