@@ -2,8 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/dustinul6/.oh-my-zsh
-  export EDITOR='vim'
+  export ZSH=/home/ubuntu/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -82,10 +81,12 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
+alias zsrc="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias julia='~/julia/bin/julia' 
-alias src='source ~/.zshrc'
-alias vim='vim --servername vim'
-alias saget='sudo apt-get'
-alias recon='service network-manager restart'
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
+source /usr/local/bin/virtualenvwrapper.sh
