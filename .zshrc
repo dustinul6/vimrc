@@ -9,6 +9,8 @@ export ZSH=/Users/dustinul6/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="avit"
 
+bindkey -v
+export KEYTIMEOUT=1
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -70,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 ## Editor = vim
-export EDITOR='vim'
+export EDITOR='nvim'
 
 ## Tmuxinator
 source ~/.bin/tmuxinator.zsh
@@ -95,3 +97,15 @@ alias states='cd ~/Dropbox/stability/Code'
 alias zsrc='source ~/.zshrc'
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3'
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/local/bin/python3'
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+source /usr/local/bin/virtualenvwrapper.sh
+function frameworkpython {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python "$@"
+    else
+        /usr/local/bin/python "$@"
+    fi
+}

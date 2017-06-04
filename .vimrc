@@ -6,31 +6,32 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin()
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
-Plug 'tomasr/molokai'
-Plug 'julialang/julia-vim'
+"Plug 'scrooloose/syntastic'
+"Plug 'tpope/vim-fugitive'
+"Plug 'kien/ctrlp.vim'
+"Plug 'tomasr/molokai'
+"Plug 'julialang/julia-vim'
 "Plug 'zyedidia/julialint.vim'
-Plug 'shougo/neocomplete.vim'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
+"Plug 'shougo/neocomplete.vim'
+"Plug 'tpope/vim-surround'
+"Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdcommenter'
-Plug 'benekastah/neomake'
-Plug 'raimondi/delimitmate'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'valloric/youcompleteme'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'baruchel/vim-notebook'
-Plug 'tpope/vim-markdown'
-Plug 'lervag/vimtex'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }<Paste>
+"Plug 'benekastah/neomake'
+"Plug 'raimondi/delimitmate'
+"Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'valloric/youcompleteme'
+"Plug 'christoomey/vim-tmux-navigator'
+"Plug 'baruchel/vim-notebook'
+"Plug 'tpope/vim-markdown'
+"Plug 'lervag/vimtex'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'ervandew/supertab'
 Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 " }}}
@@ -188,9 +189,9 @@ let g:notebook_detect='VIMJULIANOTEBOOK'
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'julia']
 
 "" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-Y>"
@@ -221,20 +222,20 @@ imap <C-L> <Plug>delimitMateS-Tab
 " vim:foldmethod=marker:foldlevel=0
 set omnifunc=syntaxcomplete#Complete
 
-" vimtex + YCM {{{
-set number
-if !exists('g:ycm_semantic_triggers')
-let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers.tex = [
-    \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-    \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-    \ 're!\\hyperref\[[^]]*',
-    \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-    \ 're!\\(include(only)?|input){[^}]*',
-    \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-    \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-    \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-    \ ]
-"}}}
+"" vimtex + YCM {{{
+"set number
+"if !exists('g:ycm_semantic_triggers')
+"let g:ycm_semantic_triggers = {}
+"endif
+"let g:ycm_semantic_triggers.tex = [
+    "\ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+    "\ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+    "\ 're!\\hyperref\[[^]]*',
+    "\ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+    "\ 're!\\(include(only)?|input){[^}]*',
+    "\ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+    "\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+    "\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+    "\ ]
+""}}}
 "inoremap gj <Esc>f$a<Space>
