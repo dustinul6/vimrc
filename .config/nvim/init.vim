@@ -83,7 +83,8 @@ nnoremap gV `[v`]
 " Leader
 let mapleader="\\"
 
-nnoremap rc :tabe $MYVIMRC<CR>
+nnoremap <leader>rc :tabe $MYVIMRC<CR>
+nnoremap <leader>p8 :PymodeLintAuto<CR>
 
 " jk is escape
 inoremap jk <esc>
@@ -310,12 +311,19 @@ endif
 let g:indentLine_fileType = ['python', 'ex']
 
 
-let g:vimtex_view_general_viewer
-            \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
+"let g:vimtex_view_general_viewer
+            "\ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+"let g:vimtex_view_general_options = '-r @line @pdf @tex'
 
-" This adds a callback hook that updates Skim after compilation
-let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+"" This adds a callback hook that updates Skim after compilation
+"let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+
+" Ubunutu
+let g:vimtex_view_general_viewer = 'qpdfview'
+let g:vimtex_view_general_options
+            \ = '--unique @pdf\#src:@tex:@line:@col'
+let g:vimtex_view_general_options_latexmk = '--unique'
+
 function! UpdateSkim(status)
     if !a:status | return | endif
 

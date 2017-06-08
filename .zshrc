@@ -83,6 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias zsrc="source ~/.zshrc"
+alias wake="./wakedisplay.sh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export WORKON_HOME=$HOME/.virtualenvs
@@ -90,3 +91,4 @@ export PROJECT_HOME=$HOME/Projects
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
 source /usr/local/bin/virtualenvwrapper.sh
+export PATH=$PATH:/usr/local/go/bin
