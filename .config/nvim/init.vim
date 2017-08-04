@@ -43,6 +43,13 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'yggdroot/indentline'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'elmcast/elm-vim'
+"Plug 'jpalardy/vim-slime'
+Plug 'jalvesaq/vimcmdline'
+Plug 'kassio/neoterm'
+Plug 'hkupty/iron.nvim'
+Plug 'majutsushi/tagbar'
+
+" insert here
 call plug#end()
 " }}}
 
@@ -85,6 +92,7 @@ let mapleader="\\"
 
 nnoremap <leader>rc :tabe $MYVIMRC<CR>
 nnoremap <leader>p8 :PymodeLintAuto<CR>
+nnoremap <leader>N :NERDTree<CR>
 
 " jk is escape
 inoremap jk <esc>
@@ -219,8 +227,10 @@ nnoremap gp :Gpush<CR>
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 " DelimitMate {{{
 let delimitMate_expand_space=1
-let delimitMate_expand_cr = 1
-let delimitMate_expand_inside_quotes = 1
+let delimitMate_expand_cr=1
+let delimitMate_jump_expansion = 1
+let backspace=2
+let delimitMate_expand_inside_quotes=1
 let b:delimitMate_quotes = "$" "\" ' `"
 imap <C-L> <Plug>delimitMateS-Tab
 "imap <Space><Space> <Space><Left>
@@ -270,14 +280,22 @@ set number
 "\ . ')'
 "}}}
 
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog =  '/usr/bin/python3'
+" Pymode {{{
+set number
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3.6'
 
 let python_space_error_highlight = 1
 let g:pymode_python = 'python3'
 let g:syntastic_ignore_files = ['\.py$']
-
+let g:pymode_lint = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_message = 1
+let g:pymode_run = 0
+"let g:pymode_run_bind = '<leader>r'
 let g:pymode_rope_complete_on_dot = 0
+let g:pymode_lint_checkers = ['pylint', 'pep8']
+"}}}
 "augroup AutoPep8
 "autocmd FileType python
 "\ autocmd! AutoPep8 BufWritePost <buffer> call ()
@@ -318,6 +336,7 @@ let g:indentLine_fileType = ['python', 'ex']
 "" This adds a callback hook that updates Skim after compilation
 "let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
 
+" Vimtex {{{
 " Ubunutu
 let g:vimtex_view_general_viewer = 'qpdfview'
 let g:vimtex_view_general_options
@@ -341,5 +360,44 @@ function! UpdateSkim(status)
         call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
     endif
 endfunction
-
 let g:tex_conceal = ""
+"}}}
+
+
+" Neoterm {{{
+set number
+let g:neoterm_position = 'horizontal'
+
+let g:neoterm_automap_keys = ',tt'
+
+nnoremap <silent> <f10> :TREPLSendFile<cr>
+nnoremap <silent> <f9> :TREPLSendLine<cr>
+vnoremap <silent> <f9> :TREPLSendSelection<cr>
+
+" Useful maps
+" hide/close terminal
+nnoremap <silent> ,th :call neoterm#close()<cr>
+" clear terminal
+nnoremap <silent> ,tl :call neoterm#clear()<cr>
+" kills the current job (send a <c-c>)
+nnoremap <silent> ,tc :call neoterm#kill()<cr>
+
+" Rails commands
+command! Troutes :T rake routes
+command! -nargs=+ Troute :T rake routes | grep <args>
+command! Tmigrate :T rake db:migrate
+
+" Git commands
+command! -nargs=+ Tg :T git <args>
+tnoremap <Esc> <C-\><C-n>
+"}}}
+
+" Vimslime {{{
+set number
+let g:slime_target = "tmux"
+"}}}
+
+let cmdline_app           = {}
+let cmdline_app["python"] = "python"
+
+nmap <F8> :TagbarToggle<CR>

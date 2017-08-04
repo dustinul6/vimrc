@@ -68,6 +68,9 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+#export AWS_ACCESS_KEY_ID=AKIAI7OMZNCRYV6A4ABQ
+#export AWS_SECRET_ACCESS_KEY=yAqGecSG8GCgfYYKtJIqZpozglpngfyfsKUDP1x
+#export AWS_REGION=us-east-1
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -88,7 +91,9 @@ alias wake="./wakedisplay.sh"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
+export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.6'
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3.6'
 source /usr/local/bin/virtualenvwrapper.sh
 export PATH=$PATH:/usr/local/go/bin
+export PATH="/home/dustinul6/anaconda3/bin:$PATH"
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
