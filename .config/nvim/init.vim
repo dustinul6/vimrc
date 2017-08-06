@@ -282,8 +282,13 @@ set number
 
 " Pymode {{{
 set number
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3.6'
+if has('macunix')
+    let g:python_host_prog = '/usr/bin/python'
+    let g:python3_host_prog = '/usr/local/bin/python3'
+else
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = '/usr/bin/python3.6'
+endif
 
 let python_space_error_highlight = 1
 let g:pymode_python = 'python3'
@@ -400,4 +405,4 @@ let g:slime_target = "tmux"
 let cmdline_app           = {}
 let cmdline_app["python"] = "python"
 
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>tb :TagbarToggle<CR>

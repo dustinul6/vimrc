@@ -91,9 +91,19 @@ alias wake="./wakedisplay.sh"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3.6'
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3.6'
+export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3.6'
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/local/bin/python3.6'
 source /usr/local/bin/virtualenvwrapper.sh
 export PATH=$PATH:/usr/local/go/bin
-export PATH="/home/dustinul6/anaconda3/bin:$PATH"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
+# make virtualenv access framework python in mac os
+# usage: $fpython => start a python repl (not ipython)
+# $fpython somescript.py => execute the script
+function fpython {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python3.6 "$@"
+    else
+        /usr/local/bin/python3.6 "$@"
+    fi
+}
