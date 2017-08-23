@@ -48,6 +48,7 @@ Plug 'jalvesaq/vimcmdline'
 Plug 'kassio/neoterm'
 Plug 'hkupty/iron.nvim'
 Plug 'majutsushi/tagbar'
+Plug 'yuttie/comfortable-motion.vim'
 
 " insert here
 call plug#end()
@@ -92,7 +93,10 @@ let mapleader="\\"
 
 nnoremap <leader>rc :tabe $MYVIMRC<CR>
 nnoremap <leader>p8 :PymodeLintAuto<CR>
+nnoremap <leader>lt :PymodeLint<CR>
 nnoremap <leader>N :NERDTree<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bf :bf<CR>
 
 " jk is escape
 inoremap jk <esc>
@@ -216,8 +220,6 @@ autocmd Filetype tex :VimtexTocOpen
 """" The following line MUST be at the last line for the folding to work.
 
 "" Faster saving and add to git {{{
-nnoremap ww :w<CR>
-nnoremap wq :wq<CR>
 nnoremap gw :Gw<CR>
 nnoremap gc :Gcommit<CR>
 nnoremap gp :Gpush<CR>
@@ -294,7 +296,7 @@ let python_space_error_highlight = 1
 let g:pymode_python = 'python3'
 let g:syntastic_ignore_files = ['\.py$']
 let g:pymode_lint = 1
-let g:pymode_lint_on_write = 1
+let g:pymode_lint_on_write = 0
 let g:pymode_lint_message = 1
 let g:pymode_run = 0
 "let g:pymode_run_bind = '<leader>r'
@@ -334,37 +336,41 @@ endif
 let g:indentLine_fileType = ['python', 'ex']
 
 
-"let g:vimtex_view_general_viewer
-            "\ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-"let g:vimtex_view_general_options = '-r @line @pdf @tex'
-
-"" This adds a callback hook that updates Skim after compilation
-"let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
 
 " Vimtex {{{
 " Ubunutu
-let g:vimtex_view_general_viewer = 'qpdfview'
 let g:vimtex_view_general_options
             \ = '--unique @pdf\#src:@tex:@line:@col'
 let g:vimtex_view_general_options_latexmk = '--unique'
 
-function! UpdateSkim(status)
-    if !a:status | return | endif
+if has('macunix')
+    "let g:vimtex_view_general_viewer = 'skim'
+    let g:vimtex_view_general_viewer
+                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+    "let g:vimtex_view_general_options = '-r @line @pdf @tex'
 
-    let l:out = b:vimtex.out()
-    let l:tex = expand('%:p')
-    let l:cmd = [g:vimtex_view_general_viewer, '-r']
-    if !empty(system('pgrep Skim'))
-        call extend(l:cmd, ['-g'])
-    endif
-    if has('nvim')
-        call jobstart(l:cmd + [line('.'), l:out, l:tex])
-    elseif has('job')
-        call job_start(l:cmd + [line('.'), l:out, l:tex])
-    else
-        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
-    endif
-endfunction
+    "" This adds a callback hook that updates Skim after compilation
+    "let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+else
+    let g:vimtex_view_general_viewer = 'qpdfview'
+endif
+"function! UpdateSkim(status)
+    "if !a:status | return | endif
+
+    "let l:out = b:vimtex.out()
+    "let l:tex = expand('%:p')
+    "let l:cmd = [g:vimtex_view_general_viewer, '-r']
+    "if !empty(system('pgrep Skim'))
+        "call extend(l:cmd, ['-g'])
+    "endif
+    "if has('nvim')
+        "call jobstart(l:cmd + [line('.'), l:out, l:tex])
+    "elseif has('job')
+        "call job_start(l:cmd + [line('.'), l:out, l:tex])
+    "else
+        "call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+    "endif
+"endfunction
 let g:tex_conceal = ""
 "}}}
 

@@ -107,3 +107,5 @@ function fpython {
         /usr/local/bin/python3.6 "$@"
     fi
 }
+
+source activate universe-starter-agent
