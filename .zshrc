@@ -108,4 +108,54 @@ function fpython {
     fi
 }
 
-source activate universe-starter-agent
+# AWS shortcuts
+
+rlid="i-04c221847917f0f6c"
+# start instance
+alias startrl="aws ec2 start-instances --instance-ids $rlid"
+alias getdns="aws ec2 describe-instances --instance-ids $rlid --query 'Reservations[0].Instances[0].PublicDnsName'"
+alias connectrlnb="connect-rl.sh nb"
+alias connectrl="connect-rl.sh"
+alias stoprl="aws ec2 stop-instances --instance-ids $rlid"
+
+#source activate universe-starter-agent
+if [ -d "/Users/dustinul6/scripts" ] ; then
+	export PATH="/Users/dustinul6/scripts:$PATH" 
+fi
+
+# vi-mode show [NORMAL]
+bindkey -v
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+precmd() { RPROMPT="" }
+function zle-line-init zle-keymap-select {
+   VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+   zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+export KEYTIMEOUT=1
+
+# vi-mode change cursor
+# source: http://lynnard.me/blog/2014/01/05/change-cursor-shape-for-zsh-vi-mode/
+
+zle-keymap-select () {
+    if [ "$TERM" = "xterm-256color" ]; then
+        if [ $KEYMAP = vicmd ]; then
+            # the command mode for vi
+            echo -ne "\e[2 q"
+        else
+            # the insert mode for vi
+            echo -ne "\e[4 q"
+        fi
+    fi
+}

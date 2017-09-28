@@ -99,7 +99,7 @@ nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bf :bf<CR>
 
 " jk is escape
-inoremap jk <esc>
+"inoremap jk <esc>
 
 " toggle gundo
 "nnoremap <leader>u :GundoToggle<CR>
@@ -344,15 +344,13 @@ let g:vimtex_view_general_options
 let g:vimtex_view_general_options_latexmk = '--unique'
 
 if has('macunix')
-    "let g:vimtex_view_general_viewer = 'skim'
-    let g:vimtex_view_general_viewer
-                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+    let g:vimtex_view_method = 'skim'
+    "let g:vimtex_view_general_viewer
+                "\ = '/Applications/Skim.app'
     "let g:vimtex_view_general_options = '-r @line @pdf @tex'
 
     "" This adds a callback hook that updates Skim after compilation
     "let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
-else
-    let g:vimtex_view_general_viewer = 'qpdfview'
 endif
 "function! UpdateSkim(status)
     "if !a:status | return | endif
