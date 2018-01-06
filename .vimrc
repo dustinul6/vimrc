@@ -6,20 +6,34 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin()
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
-Plug 'tomasr/molokai'
-Plug 'julialang/julia-vim'
+"Plug 'scrooloose/syntastic'
+"Plug 'tpope/vim-fugitive'
+"Plug 'kien/ctrlp.vim'
+"Plug 'tomasr/molokai'
+"Plug 'julialang/julia-vim'
 "Plug 'zyedidia/julialint.vim'
-Plug 'shougo/neocomplete.vim'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
+"Plug 'shougo/neocomplete.vim'
+"Plug 'tpope/vim-surround'
+"Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'scrooloose/nerdcommenter'
+<<<<<<< HEAD
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }<Paste>
+"Plug 'benekastah/neomake'
+"Plug 'raimondi/delimitmate'
+"Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'valloric/youcompleteme'
+"Plug 'christoomey/vim-tmux-navigator'
+"Plug 'baruchel/vim-notebook'
+"Plug 'tpope/vim-markdown'
+"Plug 'lervag/vimtex'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'ervandew/supertab'
+=======
 Plug 'benekastah/neomake'
 Plug 'raimondi/delimitmate'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -31,17 +45,24 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 " }}}
 
+<<<<<<< HEAD
+set background=light
+colorscheme PaperColor
+"wombat256mod " 256mod work with terminal
+=======
 let g:neocomplete#enable_at_startup = 1
 "colorscheme wombat256mod " 256mod work with terminal
 set background=light
 colorscheme PaperColor
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 syntax enable           " enable syntax processing
 "set tabstop=4       " number of visual spaces per TAB
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 "set softtabstop=0   " number of spaces in tab when editing
 "set expandtab       " tabs are spaces
 set number              " show line numbers
@@ -112,7 +133,10 @@ let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 set ttimeoutlen=50
 let g:airline_powerline_fonts = 1
+<<<<<<< HEAD
+=======
 "let g:airline_theme='badwolf'
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 let g:airline_theme='papercolor'
 " unicode symbols
 
@@ -190,9 +214,15 @@ let g:notebook_detect='VIMJULIANOTEBOOK'
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'julia']
 
 "" make YCM compatible with UltiSnips (using supertab)
+<<<<<<< HEAD
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
+=======
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 
 "" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-Y>"
@@ -202,8 +232,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 let g:UltiSnipsEditSplit = "horizontal"
 let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 
+<<<<<<< HEAD
+autocmd BufNewFile,BufRead *.tex :VimtexTocOpen
+=======
 "autocmd FileType tex NERDTree | syntax enable |
 
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 """ The following line MUST be at the last line for the folding to work.
 
 "" Faster saving and add to git
@@ -222,6 +256,11 @@ let delimitMate_expand_inside_quotes = 1
 let b:delimitMate_quotes = "$" "\" ' `"
 imap <C-L> <Plug>delimitMateS-Tab
 " vim:foldmethod=marker:foldlevel=0
+<<<<<<< HEAD
+set omnifunc=syntaxcomplete#Complete
+
+"" vimtex + YCM {{{
+=======
 
 " vimtex + neocomplete {{{
 set number
@@ -242,6 +281,7 @@ let g:neocomplete#sources#omni#input_patterns.tex =
 "}}}
 
 " vimtex + YCM {{{
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 "set number
 "if !exists('g:ycm_semantic_triggers')
 "let g:ycm_semantic_triggers = {}
@@ -256,5 +296,9 @@ let g:neocomplete#sources#omni#input_patterns.tex =
     "\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
     "\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
     "\ ]
+<<<<<<< HEAD
+""}}}
+=======
 "}}}
+>>>>>>> 892c5bd29beed84de89fb62ef4a713a7667b66fc
 "inoremap gj <Esc>f$a<Space>

@@ -291,7 +291,7 @@ if has('macunix')
     let g:python3_host_prog = '/usr/local/bin/python3'
 else
     let g:python_host_prog = '/usr/bin/python2'
-    let g:python3_host_prog = '/usr/bin/python3.6'
+    let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 let python_space_error_highlight = 1

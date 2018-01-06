@@ -2,13 +2,15 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="avit"
 
+bindkey -v
+export KEYTIMEOUT=1
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -63,14 +65,12 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
-# else
-#   export EDITOR='mvim'
-# fi
-#export AWS_ACCESS_KEY_ID=AKIAI7OMZNCRYV6A4ABQ
-#export AWS_SECRET_ACCESS_KEY=yAqGecSG8GCgfYYKtJIqZpozglpngfyfsKUDP1x
-#export AWS_REGION=us-east-1
+
+## Editor = vim
+export EDITOR='nvim'
+
+## Tmuxinator
+source ~/.bin/tmuxinator.zsh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -91,8 +91,8 @@ alias wake="./wakedisplay.sh"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3.6'
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/local/bin/python3.6'
+export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
 source /usr/local/bin/virtualenvwrapper.sh
 export PATH=$PATH:/usr/local/go/bin
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
@@ -102,12 +102,19 @@ alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance
 # $fpython somescript.py => execute the script
 function fpython {
     if [[ ! -z "$VIRTUAL_ENV" ]]; then
-        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python3.6 "$@"
+        PYTHONHOME=$VIRTUAL_ENV /usr/bin/python3 "$@"
     else
-        /usr/local/bin/python3.6 "$@"
+        /usr/bin/python3 "$@"
     fi
 }
 
+#source activate universe-starter-agent
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# added by Anaconda3 4.4.0 installer
+export PATH="/home/dustinul6/anaconda3/bin:$PATH"
+export SLACK_BOT_TOKEN='xoxb-247331771860-rtHHVkdfmrvxQOylKTZbOtgu'
 # AWS shortcuts
 
 rlid="i-04c221847917f0f6c"
