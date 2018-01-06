@@ -1,5 +1,6 @@
 " Vim Plug {{{
 set number
+set relativenumber
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs 
             \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -49,6 +50,7 @@ Plug 'kassio/neoterm'
 Plug 'hkupty/iron.nvim'
 Plug 'majutsushi/tagbar'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'godlygeek/tabular'
 
 " insert here
 call plug#end()
@@ -130,9 +132,9 @@ endif
 
 " CtrlP settings {{{
 set number
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 'r'
+let g:ctrldefinitionmatch_window = 'bottom,order:ttb'
+let g:ctrldefinitionswitch_buffer = 0
+let g:ctrldefinitionworking_path_mode = 'r'
 "make CtrlP default mixed search
 nnoremap <C-P> :CtrlPMixed<CR>
 " }}}
@@ -198,11 +200,11 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'julia']
 "}}}
 
 " deoplete moving and selecting {{{
-set number
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-endfunction
+"set number
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+    "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"endfunction
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " }}}
 
@@ -230,10 +232,10 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 " DelimitMate {{{
 let delimitMate_expand_space=1
 let delimitMate_expand_cr=1
-let delimitMate_jump_expansion = 1
+let delimitMate_jumdefinitionexpansion = 1
 let backspace=2
 let delimitMate_expand_inside_quotes=1
-let b:delimitMate_quotes = "$" "\" ' `"
+let b:delimitMate_quotes = "$ \" ' `"
 imap <C-L> <Plug>delimitMateS-Tab
 "imap <Space><Space> <Space><Left>
 " vim:foldmethod=marker:foldlevel=0
@@ -316,6 +318,8 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
+let g:neosnippet#snippets_directory='~/.config/custom-neo-snippet'
+
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -377,7 +381,7 @@ let g:tex_conceal = ""
 set number
 let g:neoterm_position = 'horizontal'
 
-let g:neoterm_automap_keys = ',tt'
+let g:neoterm_automadefinitionkeys = ',tt'
 
 nnoremap <silent> <f10> :TREPLSendFile<cr>
 nnoremap <silent> <f9> :TREPLSendLine<cr>
