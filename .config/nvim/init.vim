@@ -15,7 +15,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'poppyschmo/deoplete-latex'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'tomasr/molokai'
 Plug 'julialang/julia-vim'
 "Plug 'zyedidia/julialint.vim'
@@ -51,6 +51,7 @@ Plug 'hkupty/iron.nvim'
 Plug 'majutsushi/tagbar'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'godlygeek/tabular'
+Plug 'chrisbra/csv.vim'
 
 " insert here
 call plug#end()
@@ -94,8 +95,6 @@ nnoremap gV `[v`]
 let mapleader="\\"
 
 nnoremap <leader>rc :tabe $MYVIMRC<CR>
-nnoremap <leader>p8 :PymodeLintAuto<CR>
-nnoremap <leader>lt :PymodeLint<CR>
 nnoremap <leader>N :NERDTree<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bf :bf<CR>
@@ -301,9 +300,14 @@ let g:pymode_lint = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_message = 1
 let g:pymode_run = 0
+let g:pymode_folding = 1
+let g:pymode_indent = 1
 "let g:pymode_run_bind = '<leader>r'
 let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_goto_definition_bind = '<leader>g'
 let g:pymode_lint_checkers = ['pylint', 'pep8']
+nnoremap <leader>p8 :PymodeLintAuto<CR>
+nnoremap <leader>lt :PymodeLint<CR>
 "}}}
 "augroup AutoPep8
 "autocmd FileType python

@@ -70,7 +70,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 ## Tmuxinator
-source ~/.bin/tmuxinator.zsh
+#source ~/.bin/tmuxinator.zsh
+alias mux="tmuxinator"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -86,43 +87,45 @@ source ~/.bin/tmuxinator.zsh
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias zsrc="source ~/.zshrc"
-alias wake="./wakedisplay.sh"
+#alias wake="./wakedisplay.sh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
-export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
-source /usr/local/bin/virtualenvwrapper.sh
-export PATH=$PATH:/usr/local/go/bin
-alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/Projects
+#export VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
+#source /usr/local/bin/virtualenvwrapper.sh
+#export PATH=$PATH:/usr/local/go/bin
+#alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 # make virtualenv access framework python in mac os
 # usage: $fpython => start a python repl (not ipython)
 # $fpython somescript.py => execute the script
-function fpython {
-    if [[ ! -z "$VIRTUAL_ENV" ]]; then
-        PYTHONHOME=$VIRTUAL_ENV /usr/bin/python3 "$@"
-    else
-        /usr/bin/python3 "$@"
-    fi
-}
+#function fpython {
+    #if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        #PYTHONHOME=$VIRTUAL_ENV /usr/bin/python3 "$@"
+    #else
+        #/usr/bin/python3 "$@"
+    #fi
+#}
 
 #source activate universe-starter-agent
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+#alias pbcopy='xclip -selection clipboard'
+#alias pbpaste='xclip -selection clipboard -o'
 
-# added by Anaconda3 4.4.0 installer
-export PATH="/home/dustinul6/anaconda3/bin:$PATH"
+# added by Anaconda3 installer
+#export PATH="/home/dustinul6/anaconda3/bin:$PATH"
+export PATH="/Users/dustinul6/anaconda3/bin:$PATH"
 export SLACK_BOT_TOKEN='xoxb-247331771860-rtHHVkdfmrvxQOylKTZbOtgu'
 # AWS shortcuts
 
-rlid="i-04c221847917f0f6c"
+#rlid="i-04c221847917f0f6c"
+rlid="i-06faca9e53badabc0"
 # start instance
 alias startrl="aws ec2 start-instances --instance-ids $rlid"
 alias getdns="aws ec2 describe-instances --instance-ids $rlid --query 'Reservations[0].Instances[0].PublicDnsName'"
-alias connectrlnb="connect-rl.sh nb"
-alias connectrl="connect-rl.sh"
+alias connectrlnb="connect-rl.sh 2 nb"
+alias connectrl="connect-rl.sh 2"
 alias stoprl="aws ec2 stop-instances --instance-ids $rlid"
 
 #source activate universe-starter-agent
