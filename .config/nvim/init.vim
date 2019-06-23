@@ -37,7 +37,7 @@ Plug 'lervag/vimtex'
 "Plug 'ervandew/supertab'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'zchee/deoplete-jedi'
-Plug 'klen/python-mode'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'elixir-lang/vim-elixir'
@@ -45,13 +45,22 @@ Plug 'yggdroot/indentline'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'elmcast/elm-vim'
 "Plug 'jpalardy/vim-slime'
-Plug 'jalvesaq/vimcmdline'
-Plug 'kassio/neoterm'
+"Plug 'jalvesaq/vimcmdline'
+"Plug 'kassio/neoterm'
 Plug 'hkupty/iron.nvim'
 Plug 'majutsushi/tagbar'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'godlygeek/tabular'
 Plug 'chrisbra/csv.vim'
+Plug 'dpelle/vim-LanguageTool'
+Plug 'w0rp/ale'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'cohama/lexima.vim'
+"Plug 'tpope/vim-unimpaired'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-obsession'
+Plug 'bagrat/vim-buffet'
+Plug 'ekalinin/dockerfile.vim'
 
 " insert here
 call plug#end()
@@ -98,6 +107,7 @@ nnoremap <leader>rc :tabe $MYVIMRC<CR>
 nnoremap <leader>N :NERDTree<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bf :bf<CR>
+nnoremap <leader>so :so $MYVIMRC<CR>
 
 " jk is escape
 "inoremap jk <esc>
@@ -220,6 +230,8 @@ let g:UltiSnipsSnippetsDir = "~/.vim/mySnippets"
 autocmd Filetype tex :VimtexTocOpen
 """" The following line MUST be at the last line for the folding to work.
 
+autocmd Filetype json set conceallevel=0
+
 "" Faster saving and add to git {{{
 nnoremap gw :Gw<CR>
 nnoremap gc :Gcommit<CR>
@@ -234,7 +246,8 @@ let delimitMate_expand_cr=1
 let delimitMate_jumdefinitionexpansion = 1
 let backspace=2
 let delimitMate_expand_inside_quotes=1
-let b:delimitMate_quotes = "$ \" ' `"
+let g:delimitMate_quotes = "\$ \""
+"au FileType tex let b:delimitMate_matchpairs = "\\{:\\}"
 imap <C-L> <Plug>delimitMateS-Tab
 "imap <Space><Space> <Space><Left>
 " vim:foldmethod=marker:foldlevel=0
@@ -303,11 +316,13 @@ let g:pymode_run = 0
 let g:pymode_folding = 1
 let g:pymode_indent = 1
 "let g:pymode_run_bind = '<leader>r'
+let g:pymode_rope = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_goto_definition_bind = '<leader>g'
 let g:pymode_lint_checkers = ['pylint', 'pep8']
+let g:pymode_indent = 1
 nnoremap <leader>p8 :PymodeLintAuto<CR>
-nnoremap <leader>lt :PymodeLint<CR>
+nnoremap <leader>pl :PymodeLint<CR>
 "}}}
 "augroup AutoPep8
 "autocmd FileType python
@@ -418,3 +433,33 @@ let cmdline_app           = {}
 let cmdline_app["python"] = "python"
 
 nmap <leader>tb :TagbarToggle<CR>
+
+"LanguageTool location
+let g:languagetool_jar='~/LanguageTool-4.2/languagetool-commandline.jar'
+"ALE
+let g:ale_lint_on_text_changed='0'
+
+" Lexima {{{
+call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+call lexima#add_rule({'char': '<SPACE>', 'at': '\$\%#\$', 'input': ' ', 'input_after': ' ', 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\$ \%# \$', 'input': '<BS>', 'delete': 1, 'filetype': 'tex'})
+let g:lexima_no_default_rules=1
+call lexima#add_rule({'char': '\{', 'input_after': '\}', 'filetype': 'tex'})
+call lexima#add_rule({'char': '<SPACE>', 'at': '\\{\%#\\}', 'input': ' ', 'input_after': ' ', 'filetype': 'tex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\\{\%#\\}', 'delete': 2, 'input':'<BS><BS>', 'filetype': 'tex'})
+"call lexima#add_rule({'char': '<SPACE>', 'at': '\$\%#\$', 'input': ' ', 'input_after': ' ', 'filetype': 'tex'})
+"call lexima#add_rule({'char': '<BS>', 'at': '\$ \%# \$', 'input': '<BS>', 'delete': 1, 'filetype': 'tex'})
+"}}}
+
+imap `mcd \mathcal{D}
+imap `mci \mathcal{I}_i
+imap `mcm \mathcal{M}
+imap `mbs \mathcal{S}_N
+imap `ti \theta_i
+imap `ta \theta
+imap `ki _{ik_i
+imap `biz \bar{I}_i(z)
+
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
