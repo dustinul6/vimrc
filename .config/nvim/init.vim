@@ -1,4 +1,6 @@
+
 " Vim Plug {{{
+" Type 'a to jump to the insert position
 set number
 set relativenumber
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -62,7 +64,7 @@ Plug 'tpope/vim-obsession'
 Plug 'bagrat/vim-buffet'
 Plug 'ekalinin/dockerfile.vim'
 
-" insert here
+" insert above by O
 call plug#end()
 " }}}
 

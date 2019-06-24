@@ -76,6 +76,7 @@ export EDITOR='nvim'
 ## Tmuxinator
 #source ~/.bin/tmuxinator.zsh
 alias mux="tmuxinator"
+alias cl="clear"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
